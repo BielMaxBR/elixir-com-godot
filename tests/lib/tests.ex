@@ -1,18 +1,9 @@
 defmodule Tests do
   @moduledoc """
-  Documentation for `Tests`.
+  Tests keeps the contexts that define your domain
+  and business logic.
+
+  Contexts are also responsible for managing your data, regardless
+  if it comes from the database, an external API or others.
   """
-
-  @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> Tests.hello()
-      :world
-
-  """
-  def hello do
-    :worldo
-  end
 end
