@@ -1,0 +1,100 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://login.gd" type="Script" id=1]
+
+[node name="Login" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Fundo" type="ColorRect" parent="."]
+margin_right = 1024.0
+margin_bottom = 600.0
+color = Color( 0.196078, 0.196078, 0.196078, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Painel" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 40.0
+margin_top = 40.0
+margin_right = -40.0
+margin_bottom = -40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="host" type="LineEdit" parent="Painel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -86.5
+margin_top = -42.0
+margin_right = 87.5
+margin_bottom = -18.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="nome" type="LineEdit" parent="Painel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -86.5
+margin_top = 18.0
+margin_right = 87.5
+margin_bottom = 42.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="host_nome" type="Label" parent="Painel"]
+margin_left = 453.0
+margin_top = 196.0
+margin_right = 493.0
+margin_bottom = 210.0
+text = "host"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="nome_nome" type="Label" parent="Painel"]
+margin_left = 454.0
+margin_top = 255.0
+margin_right = 494.0
+margin_bottom = 269.0
+text = "nome"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="erro" type="Label" parent="Painel"]
+visible = false
+modulate = Color( 1, 0, 0, 1 )
+margin_left = 455.0
+margin_top = 309.0
+margin_right = 495.0
+margin_bottom = 323.0
+text = "erro"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="Painel"]
+margin_left = 448.0
+margin_top = 335.0
+margin_right = 498.0
+margin_bottom = 355.0
+text = "entrar"
+
+[connection signal="pressed" from="Painel/Button" to="." method="_on_Button_pressed"]

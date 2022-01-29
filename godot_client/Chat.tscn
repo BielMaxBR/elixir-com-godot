@@ -1,0 +1,73 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Chat.gd" type="Script" id=1]
+
+[node name="Chat" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Fundo" type="ColorRect" parent="."]
+margin_right = 1024.0
+margin_bottom = 600.0
+color = Color( 0.196078, 0.196078, 0.196078, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="send" type="Button" parent="."]
+margin_left = 203.0
+margin_top = 442.0
+margin_right = 215.0
+margin_bottom = 462.0
+text = "enviar"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="message" type="LineEdit" parent="."]
+margin_left = 37.0
+margin_top = 439.0
+margin_right = 193.0
+margin_bottom = 463.0
+
+[node name="Panel" type="Panel" parent="."]
+anchor_right = 0.961
+anchor_bottom = 0.695
+margin_left = 34.0
+margin_top = 35.0
+margin_right = 1.93597
+margin_bottom = 5.99997
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 40.0
+margin_top = 40.0
+margin_right = -40.0
+margin_bottom = -180.0
+scroll_horizontal_enabled = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+margin_right = 73.0
+margin_bottom = 14.0
+alignment = 1
+
+[node name="Chat" type="Label" parent="ScrollContainer/HBoxContainer"]
+margin_right = 73.0
+margin_bottom = 14.0
+text = "Bem vindo!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="send" to="." method="_on_send_pressed"]
