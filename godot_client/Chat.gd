@@ -15,3 +15,4 @@ func _on_disconnect():
 
 func _on_send_pressed():
 	Conection.send($message.text)
+	$message.text = ""
