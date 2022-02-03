@@ -17,7 +17,8 @@ func login(host: String, _user_name: String):
 	presence = PhoenixPresence.new()
 	presence.connect("on_join", self, "_on_Presence_join")
 	presence.connect("on_leave", self, "_on_Presence_leave")
-
+	
+	
 	channel = socket.channel("chat:lobby", {}, presence)
 	channel.connect("on_event", self, "_on_Channel_event")
 	channel.connect("on_join_result", self, "_on_Channel_join_result")
@@ -37,7 +38,7 @@ func _on_Socket_error(error):
 	print(error)
 	emit_signal("error", error)
 
-func _on_Channel_join_result():
+func _on_Presence_join():
 	print('?')
 	emit_signal("connected")
 

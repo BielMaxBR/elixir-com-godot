@@ -38,6 +38,7 @@ margin_left = -86.5
 margin_top = -42.0
 margin_right = 87.5
 margin_bottom = -18.0
+text = "ws://localhost:4000/socket"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -51,6 +52,7 @@ margin_left = -86.5
 margin_top = 18.0
 margin_right = 87.5
 margin_bottom = 42.0
+text = "ara ara"
 __meta__ = {
 "_edit_use_anchors_": false
 }
