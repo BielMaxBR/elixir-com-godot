@@ -3,7 +3,7 @@ import Config
 # Configure your database
 config :godot_server, GodotServer.Repo,
   username: "postgres",
-  password: "1234",
+  password: "postgres",
   hostname: "localhost",
   database: "godot_server_dev",
   show_sensitive_data_on_connection_error: true,
