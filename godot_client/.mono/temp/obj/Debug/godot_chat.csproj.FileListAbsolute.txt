@@ -1,0 +1,12 @@
+C:\Users\gbiel\game\hora-do-elixir\godot_client\.mono\temp\bin\Debug\godot_chat.dll
+C:\Users\gbiel\game\hora-do-elixir\godot_client\.mono\temp\bin\Debug\godot_chat.pdb
+C:\Users\gbiel\game\hora-do-elixir\godot_client\.mono\temp\bin\Debug\Newtonsoft.Json.dll
+C:\Users\gbiel\game\hora-do-elixir\godot_client\.mono\temp\obj\Debug\godot_chat.csproj.AssemblyReference.cache
+C:\Users\gbiel\game\hora-do-elixir\godot_client\.mono\temp\obj\Debug\godot_chat.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\gbiel\game\hora-do-elixir\godot_client\.mono\temp\obj\Debug\godot_chat.AssemblyInfoInputs.cache
+C:\Users\gbiel\game\hora-do-elixir\godot_client\.mono\temp\obj\Debug\godot_chat.AssemblyInfo.cs
+C:\Users\gbiel\game\hora-do-elixir\godot_client\.mono\temp\obj\Debug\godot_chat.csproj.CoreCompileInputs.cache
+C:\Users\gbiel\game\hora-do-elixir\godot_client\.mono\temp\obj\Debug\godot_chat.csproj.CopyComplete
+C:\Users\gbiel\game\hora-do-elixir\godot_client\.mono\temp\obj\Debug\godot_chat.dll
+C:\Users\gbiel\game\hora-do-elixir\godot_client\.mono\temp\obj\Debug\godot_chat.pdb
+C:\Users\gbiel\game\hora-do-elixir\godot_client\.mono\temp\bin\Debug\Fenix.dll

@@ -42,7 +42,7 @@ func _ready():
 
 func _on_Socket_open(payload):
 	channel.join()
-	print("_on_Socket_open: ", " ", payload)
+	print("_on_Socket_open: ", " ", payload, OS.get_time())
 
 func _on_Socket_close(payload):
 	print("_on_Socket_close: ", " ", payload)
@@ -51,7 +51,7 @@ func _on_Socket_error(payload):
 	print("_on_Socket_error: ", " ", payload)
 
 func _on_Socket_connecting(is_connecting):
-	print("_on_Socket_connecting: ", " ", is_connecting)
+	print("_on_Socket_connecting: ", " ", is_connecting, OS.get_time())
 
 #
 # Channel events

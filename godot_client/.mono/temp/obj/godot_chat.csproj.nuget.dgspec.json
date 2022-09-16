@@ -1,0 +1,61 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\gbiel\\game\\hora-do-elixir\\godot_client\\godot_chat.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\gbiel\\game\\hora-do-elixir\\godot_client\\godot_chat.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\gbiel\\game\\hora-do-elixir\\godot_client\\godot_chat.csproj",
+        "projectName": "godot_chat",
+        "projectPath": "C:\\Users\\gbiel\\game\\hora-do-elixir\\godot_client\\godot_chat.csproj",
+        "packagesPath": "C:\\Users\\gbiel\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\gbiel\\game\\hora-do-elixir\\godot_client\\.mono\\temp\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\gbiel\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net472"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net472": {
+            "targetAlias": "net472",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net472": {
+          "targetAlias": "net472",
+          "dependencies": {
+            "Fenix": {
+              "target": "Package",
+              "version": "[0.1.3, )"
+            },
+            "Microsoft.NETFramework.ReferenceAssemblies": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[1.0.2, )",
+              "autoReferenced": true
+            },
+            "Newtonsoft.json": {
+              "target": "Package",
+              "version": "[13.0.1, )"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
