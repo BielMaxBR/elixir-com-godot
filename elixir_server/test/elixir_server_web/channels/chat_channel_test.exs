@@ -12,7 +12,7 @@ defmodule ElixirServerWeb.ChatChannelTest do
 
   test "shout broadcasts to chat:lobby", %{socket: socket} do
     push(socket, "shout", %{"body" => "all"})
-    assert_broadcast "shout", %{"body" => "all"}
+    assert_broadcast "shout", %{body: "all"}
   end
 
   # test "broadcasts are pushed to the client", %{socket: socket} do
