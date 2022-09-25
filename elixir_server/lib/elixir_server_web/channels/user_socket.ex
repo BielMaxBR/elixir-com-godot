@@ -10,7 +10,7 @@ defmodule ElixirServerWeb.UserSocket do
   # Uncomment the following line to define a "room:*" topic
   # pointing to the `ElixirServerWeb.RoomChannel`:
   #
-  channel "room:*", ElixirServerWeb.ChatChannel
+  channel "chat:*", ElixirServerWeb.ChatChannel
   #
   # To create a channel file, use the mix task:
   #
