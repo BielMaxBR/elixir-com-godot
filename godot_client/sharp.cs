@@ -15,16 +15,17 @@ public class sharp : Node2D
 			var uri = new Uri("ws://localhost:4000/socket/websocket");
 			
 			await socket.ConnectAsync(uri, new[] {("ok", "ok")});
+
 			var channel = socket.Channel("chat:lobby", new {});
+			
 			channel.Subscribe("shout", (ch, payload) => {
 				GD.Print(payload.Value<String>("body"));
 			});
+			
 			var result = await channel.JoinAsync();
+    		GD.Print($"Lobby JOIN: status = '{result.Status}', response: {result.Response}");
 			
 			await channel.SendAsync("shout", new {body = "uepa"});
-			await Task.Delay(10000)
-				.ContinueWith(async task => { await channel.LeaveAsync(); })
-				.ConfigureAwait(false);
 		}
 		catch (Exception ex)
 		{
