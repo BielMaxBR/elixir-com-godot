@@ -4,7 +4,7 @@ defmodule ElixirServerWeb.ChatChannel do
   @impl true
   def join("chat:lobby", _payload, socket) do
     {:ok, pid} = ElixirServer.Modulo.start()
-    socket.assigns[:pid] = pid
+    # socket.assigns[:pid] = pid
     {:ok, socket}
   end
 
@@ -20,7 +20,7 @@ defmodule ElixirServerWeb.ChatChannel do
   @impl true
   def handle_in("shout", %{:body => body}, socket) do
     ElixirServer.Modulo.add(socket.assigns.pid, body)
-    broadcast!(socket, "shout", %{"body": body})
+    broadcast!(socket, "shout", %{body: body})
     IO.puts(ElixirServer.Modulo.get(socket.assigns.pid))
     {:noreply, socket}
   end
