@@ -3,6 +3,8 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Phoenix;
+using Newtonsoft.Json.Linq;
+
 public class sharp : Node2D
 {
     private Socket socket;
@@ -30,6 +32,13 @@ public class sharp : Node2D
         channel.OnClose(message => {
             GD.Print(message.Payload);
         });
+        channel.On("move", body => {
+            var serializer = new JsonMessageSerializer(); // converte as coisa
+            // var serialized = serializer.Serialize(body); // vira texto
+            // var deserialized = serializer.Deserialize<Message>(serialized); // volta pra objeto
+            Player bodyObject = body.Payload.Unbox<Player>(); // extrai o dado do payload
+            GD.Print(bodyObject.Position);  
+        });
         
         Push push = channel.Join();
         push.Receive(ReplyStatus.Timeout, reply => GD.Print("parado"))
@@ -49,7 +58,8 @@ public class sharp : Node2D
 
     private void onMessageCallback(Message message)
     {
-        GD.Print("recebido", message.Payload);
+        // mensagens globais, não específico de canal
+        // GD.Print("recebido", message.Payload.Unbox<JObject>());
     }
     private void onOpenCallback()
     {
@@ -66,4 +76,10 @@ public class sharp : Node2D
         }
     }
 
+}
+
+class Player
+{
+    public int Speed {get; set; }
+    public Vector2 Position {get; set; }
 }

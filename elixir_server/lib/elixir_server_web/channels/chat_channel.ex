@@ -28,7 +28,7 @@ defmodule ElixirServerWeb.ChatChannel do
   @impl true
   def handle_in("move", %{"body" => body}, socket) do
     ElixirServer.Modulo.add(body)
-    # broadcast!(socket, "move", %{"speed" => ElixirServer.Modulo.get()})
+    broadcast!(socket, "move", %{"speed" => ElixirServer.Modulo.get(), "position" => %{x: 0, y: 12}})
     {:noreply, socket}
   end
   # Add authorization logic here as required.
