@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/phoenix@1.7.7/priv/static/phoenix.min.js"
+        integrity="sha256-DmlB8HvXkbXNMRXb72NILqibNuu6oiAH2EqYMBskuCQ=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <script type="module">
+
+        var socket = new Phoenix.Socket("ws://localhost:4000/socket/", { params: { ok: "ok" } })
+
+        socket.connect()
+
+        let channel = socket.channel("chat:lobby", {})
+
+        channel.join()
+            .receive("ok", resp => { 
+                console.log("Joined successfully", resp)
+                channel.push("shout", {body: "alo"})
+            })
+            .receive("error", resp => { console.log("Unable to join", resp) })
+        console.log("ai")
+    </script>
+</body>
+
+</html>

@@ -1,19 +1,19 @@
 defmodule ElixirServer.Modulo do
   use Agent
 
-  def start() do
-    Agent.start_link(fn -> %{} end)
+  def start_link(init_state \\ %{}) do
+    Agent.start_link(fn -> init_state end, name: __MODULE__)
   end
 
-  def add(pid, value) do
-    Agent.update(pid, fn(state) ->
-      Map.put(state,:algo, value)
+  def add(value) do
+    Agent.update(__MODULE__, fn(state) ->
+      Map.put(state,:chave, value)
     end)
   end
 
-  def get(pid) do
-    Agent.get(pid, fn(state) ->
-      Map.get(state, :algo)
+  def get() do
+    Agent.get(__MODULE__, fn(state) ->
+      Map.get(state, :chave)
     end)
   end
 end

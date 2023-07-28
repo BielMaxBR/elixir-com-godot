@@ -8,49 +8,15 @@
 
 config_version=4
 
-_global_script_classes=[ {
-"base": "Node",
-"class": "PhoenixChannel",
-"language": "GDScript",
-"path": "res://addons/Phoenix/Scripts/Channel.gd"
-}, {
-"base": "Node",
-"class": "PhoenixMessage",
-"language": "GDScript",
-"path": "res://addons/Phoenix/Scripts/Message.gd"
-}, {
-"base": "Node",
-"class": "PhoenixPresence",
-"language": "GDScript",
-"path": "res://addons/Phoenix/Scripts/Presence.gd"
-}, {
-"base": "Node",
-"class": "PhoenixSocket",
-"language": "GDScript",
-"path": "res://addons/Phoenix/Scripts/Socket.gd"
-}, {
-"base": "Node",
-"class": "PhoenixUtils",
-"language": "GDScript",
-"path": "res://addons/Phoenix/Scripts/Utils.gd"
-} ]
-_global_script_class_icons={
-"PhoenixChannel": "",
-"PhoenixMessage": "",
-"PhoenixPresence": "",
-"PhoenixSocket": "",
-"PhoenixUtils": ""
-}
-
 [application]
 
 config/name="godot_chat"
-run/main_scene="res://login.tscn"
+run/main_scene="res://scenes/shap.tscn"
 config/icon="res://icon.png"
 
-[autoload]
+[mono]
 
-Conection="*res://conection.gd"
+project/assembly_name="godot_chat"
 
 [physics]
 
