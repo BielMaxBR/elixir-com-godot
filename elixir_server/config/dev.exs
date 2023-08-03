@@ -21,10 +21,16 @@ config :elixir_server, ElixirServerWeb.Endpoint,
   # Change to `ip: {0, 0, 0, 0}` to allow access from other machines.
   http: [ip: {127, 0, 0, 1}, port: 4000],
   check_origin: false,
+  server: true,
   code_reloader: true,
   debug_errors: true,
   secret_key_base: "zuxO2FjmVm8OjhprU9SIIRRtIRC9YY4HCe2h+Q85lzfubuE0OmdtmNLLDN3ojcmF",
-  watchers: []
+  watchers: [],
+  live_reload: [
+    patterns: [
+      ~r{lib/.*(ex)$}
+    ]
+  ]
 
 # ## SSL Support
 #

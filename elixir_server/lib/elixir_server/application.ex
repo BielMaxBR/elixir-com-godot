@@ -19,7 +19,6 @@ defmodule ElixirServer.Application do
       # Start a worker by calling: ElixirServer.Worker.start_link(arg)
       # {ElixirServer.Worker, arg}
     ]
-    ElixirServer.Modulo.start_link(%{})
 
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options

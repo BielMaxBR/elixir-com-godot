@@ -1,38 +1,35 @@
 defmodule ElixirServerWeb.ChatChannel do
+  @moduledoc false
   use ElixirServerWeb, :channel
+  alias ElixirServer.User
 
   @impl true
   def join("chat:lobby", _payload, socket) do
-    # {:ok, pid} = ElixirServer.Modulo.start()
-    # socket = assign(socket, :pid, "a")
+    {:ok, pid} = User.start_link()
+    socket = assign(socket, :pid, pid)
+
+    send(self(), :after_join)
     {:ok, socket}
   end
 
-  # Channels can be used in a request/response fashion
-  # by sending replies to requests from the client
   @impl true
-  def join("room:" <> _private_room_id, _params, _socket) do
-    {:error, %{reason: "unauthorized"}}
-  end
-
-  # It is also common to receive messages from the client and
-  # broadcast to everyone in the current topic (chat:lobby).
-  @impl true
-  def handle_in("shout", %{"body" => body}, socket) do
-    broadcast!(socket, "shout", %{body: body})
-    # ElixirServer.Modulo.add(socket.assigns.pid, body)
-    # IO.puts(ElixirServer.Modulo.get(socket.assigns.pid))
+  def handle_info(:after_join, socket) do
+    pid = socket.assigns.pid
+    position = User.get_position(pid)
+    id = User.get_id(pid)
+    broadcast!(socket, "joined", %{id: id, position: position})
     {:noreply, socket}
   end
 
   @impl true
-  def handle_in("move", %{"body" => body}, socket) do
-    ElixirServer.Modulo.add(body)
-    broadcast!(socket, "move", %{"speed" => ElixirServer.Modulo.get(), "position" => %{x: 0, y: 12}})
+  def handle_in("move", %{"body" => position}, socket) do
+    pid = socket.assigns.pid
+    id = User.get_id(pid)
+
+    User.set_position(pid, position)
+
+    broadcast!(socket, "move", %{id: id, position: position})
+
     {:noreply, socket}
-  end
-  # Add authorization logic here as required.
-  defp authorized?(_payload) do
-    nil
   end
 end
