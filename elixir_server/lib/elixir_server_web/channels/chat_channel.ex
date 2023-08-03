@@ -21,6 +21,10 @@ defmodule ElixirServerWeb.ChatChannel do
     {:noreply, socket}
   end
 
+  def terminate(reason, socket) do
+    IO.puts("[info] TERMINATED ID: #{User.get_id(socket.assigns.pid)}\n REASON: #{inspect reason}")
+  end
+
   @impl true
   def handle_in("move", %{"body" => position}, socket) do
     pid = socket.assigns.pid
