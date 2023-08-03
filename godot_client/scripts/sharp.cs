@@ -26,20 +26,23 @@ public class sharp : Node2D
 
         channel = socket.Channel("chat:lobby");
 
-        channel.OnError(message => {
+        channel.OnError(message =>
+        {
             GD.Print(message.Payload);
         });
-        channel.OnClose(message => {
+        channel.OnClose(message =>
+        {
             GD.Print(message.Payload);
         });
-        channel.On("move", body => {
+        channel.On("move", body =>
+        {
             var serializer = new JsonMessageSerializer(); // converte as coisa
             // var serialized = serializer.Serialize(body); // vira texto
             // var deserialized = serializer.Deserialize<Message>(serialized); // volta pra objeto
-            Player bodyObject = body.Payload.Unbox<Player>(); // extrai o dado do payload
-            GD.Print(bodyObject.Position);  
+            var bodyObject = body.Payload.Unbox<JObject>(); // extrai o dado do payload
+            GD.Print(bodyObject);
         });
-        
+
         Push push = channel.Join();
         push.Receive(ReplyStatus.Timeout, reply => GD.Print("parado"))
             .Receive(ReplyStatus.Ok, reply => GD.Print("OK"))
@@ -72,7 +75,10 @@ public class sharp : Node2D
         if (Input.IsActionJustPressed("ui_right"))
         {
 
-            channel.Push("move", new {body = 10});
+            channel.Push("move", new
+            {
+                body = new { x = 1, y = 1 }
+            });
         }
     }
 
@@ -80,6 +86,6 @@ public class sharp : Node2D
 
 class Player
 {
-    public int Speed {get; set; }
-    public Vector2 Position {get; set; }
+    public int Id { get; set; }
+    public Vector2 Position { get; set; }
 }

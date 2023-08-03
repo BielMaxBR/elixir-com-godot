@@ -14,6 +14,18 @@ config/name="godot_chat"
 run/main_scene="res://scenes/shap.tscn"
 config/icon="res://icon.png"
 
+[debug]
+
+multirun/number_of_windows=2
+multirun/add_custom_args=true
+multirun/window_distance=600
+multirun/first_window_args="listen"
+multirun/other_window_args="join"
+
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/multirun/plugin.cfg" )
+
 [mono]
 
 project/assembly_name="godot_chat"
