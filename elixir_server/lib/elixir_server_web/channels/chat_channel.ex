@@ -2,6 +2,7 @@ defmodule ElixirServerWeb.ChatChannel do
   @moduledoc false
   use ElixirServerWeb, :channel
   alias ElixirServer.User
+  alias ElixirServer.UserStorage
 
   @impl true
   def join("chat:lobby", _payload, socket) do
@@ -15,14 +16,23 @@ defmodule ElixirServerWeb.ChatChannel do
   @impl true
   def handle_info(:after_join, socket) do
     pid = socket.assigns.pid
-    position = User.get_position(pid)
-    id = User.get_id(pid)
-    broadcast!(socket, "joined", %{id: id, position: position})
+    %{id: id, position: position} = User.get_player(pid)
+    UserStorage.store_pid(id, pid)
+
+    push(socket, "init", %{ yourid: id, online_players: UserStorage.get_all_players() })
+    broadcast_from!(socket, "joined", %{id: id, position: position})
+
     {:noreply, socket}
   end
 
+  @impl true
   def terminate(reason, socket) do
-    IO.puts("[info] TERMINATED ID: #{User.get_id(socket.assigns.pid)}\n REASON: #{inspect reason}")
+    id = User.get_id(socket.assigns.pid)
+    broadcast_from!(socket, "exited", %{id: id})
+    # lembrar de apagar no db depois
+    IO.puts("[info] TERMINATED ID: #{id}\n REASON: #{inspect reason}")
+    UserStorage.delete_pid(id)
+    User.stop(socket.assigns.pid)
   end
 
   @impl true
@@ -33,7 +43,6 @@ defmodule ElixirServerWeb.ChatChannel do
     User.set_position(pid, position)
 
     broadcast!(socket, "move", %{id: id, position: position})
-
     {:noreply, socket}
   end
 end

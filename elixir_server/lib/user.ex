@@ -11,9 +11,9 @@ defmodule ElixirServer.User do
     {:ok, pid}
   end
 
-  def add(pid, key, value) do
-    Agent.update(pid, fn(state) ->
-      Map.put(state, key, value)
+  def get_player(pid) do
+    Agent.get(pid, fn(state) ->
+      Map.from_struct(state)
     end)
   end
 
@@ -35,8 +35,13 @@ defmodule ElixirServer.User do
     end)
   end
 
+  def stop(pid) do
+    Agent.stop(pid)
+  end
+
   defp generate_player_id do
     random_bytes = :crypto.strong_rand_bytes(16)
     Base.encode16(random_bytes)
   end
+
 end

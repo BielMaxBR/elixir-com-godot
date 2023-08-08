@@ -28,11 +28,14 @@ public class sharp : Node2D
 
         channel.OnError(message =>
         {
-            GD.Print(message.Payload);
+            GD.Print(message.Payload.Unbox<JObject>());
         });
         channel.OnClose(message =>
         {
-            GD.Print(message.Payload);
+            GD.Print(message.Payload.Unbox<JObject>());
+        });
+        channel.On("joined", body => {
+            GD.Print("algm entrou");
         });
         channel.On("move", body =>
         {
@@ -62,7 +65,7 @@ public class sharp : Node2D
     private void onMessageCallback(Message message)
     {
         // mensagens globais, não específico de canal
-        // GD.Print("recebido", message.Payload.Unbox<JObject>());
+        GD.Print("recebido ",message.Event, message.Payload.Unbox<JObject>());
     }
     private void onOpenCallback()
     {
