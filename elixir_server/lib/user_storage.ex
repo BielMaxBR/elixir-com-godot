@@ -10,7 +10,7 @@ defmodule ElixirServer.UserStorage do
 
   def store_pid(player_id, pid) do
     Agent.update(__MODULE__, fn state ->
-      %{state | users_pids: Map.put(state.users_pids, player_id, pid)}
+      %__MODULE__{state | users_pids: Map.put(state.users_pids, player_id, pid)}
     end)
   end
 
@@ -22,7 +22,7 @@ defmodule ElixirServer.UserStorage do
 
   def delete_pid(player_id) do
     Agent.update(__MODULE__, fn state ->
-      Map.pop(state, player_id)
+      %__MODULE__{state | users_pids: Map.drop(state.users_pids, [player_id])}
     end)
   end
 

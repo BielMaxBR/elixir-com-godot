@@ -14,11 +14,11 @@ defmodule ElixirServer.Application do
       ElixirServerWeb.Telemetry,
       # Start the PubSub system
       {Phoenix.PubSub, name: ElixirServer.PubSub},
-      # Start the Endpoint (http/https)
-      ElixirServerWeb.Endpoint,
       # Start a worker by calling: ElixirServer.Worker.start_link(arg)
       # {ElixirServer.Worker, arg}
-      {ElixirServer.UserStorage, %ElixirServer.UserStorage{}}
+      {ElixirServer.UserStorage, %ElixirServer.UserStorage{}},
+      # Start the Endpoint (http/https)
+      ElixirServerWeb.Endpoint
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

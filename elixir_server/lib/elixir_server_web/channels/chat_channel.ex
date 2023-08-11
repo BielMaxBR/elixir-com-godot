@@ -36,13 +36,13 @@ defmodule ElixirServerWeb.ChatChannel do
   end
 
   @impl true
-  def handle_in("move", %{"body" => position}, socket) do
+  def handle_in("move", %{"position" => position}, socket) do
     pid = socket.assigns.pid
     id = User.get_id(pid)
 
     User.set_position(pid, position)
 
-    broadcast!(socket, "move", %{id: id, position: position})
+    broadcast_from!(socket, "move", %{id: id, position: position})
     {:noreply, socket}
   end
 end

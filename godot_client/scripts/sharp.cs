@@ -34,16 +34,27 @@ public class sharp : Node2D
         {
             GD.Print(message.Payload.Unbox<JObject>());
         });
-        channel.On("joined", body => {
-            GD.Print("algm entrou");
+
+        channel.On("init", body =>
+        {
+            InitData data = body.Payload.Unbox<InitData>();
+            foreach (Player playerData in data.Online_players)
+            {
+                if (playerData.id == data.YourId) playerData.is_local = true;
+                SpawnPlayer(playerData);
+            }
         });
+
+        channel.On("joined", body =>
+        {
+            Player playerData = body.Payload.Unbox<Player>();
+            SpawnPlayer(playerData);
+        });
+
         channel.On("move", body =>
         {
-            var serializer = new JsonMessageSerializer(); // converte as coisa
-            // var serialized = serializer.Serialize(body); // vira texto
-            // var deserialized = serializer.Deserialize<Message>(serialized); // volta pra objeto
-            var bodyObject = body.Payload.Unbox<JObject>(); // extrai o dado do payload
-            GD.Print(bodyObject);
+            Player playerData = body.Payload.Unbox<Player>();
+            MovePlayer(playerData);
         });
 
         Push push = channel.Join();
@@ -51,6 +62,7 @@ public class sharp : Node2D
             .Receive(ReplyStatus.Ok, reply => GD.Print("OK"))
             .Receive(ReplyStatus.Error, reply => GD.Print("Errou"));
     }
+
 
     private void onCloseCallback(ushort code, string message)
     {
@@ -65,7 +77,7 @@ public class sharp : Node2D
     private void onMessageCallback(Message message)
     {
         // mensagens globais, não específico de canal
-        GD.Print("recebido ",message.Event, message.Payload.Unbox<JObject>());
+        // GD.Print("recebido ", message.Event, " ", message.Payload.Unbox<JObject>());
     }
     private void onOpenCallback()
     {
@@ -85,10 +97,34 @@ public class sharp : Node2D
         }
     }
 
-}
+    private void SpawnPlayer(Player playerData)
+    {
+        var player = ResourceLoader.Load<PackedScene>("res://entities/player.tscn").Instance<Player>();
 
-class Player
-{
-    public int Id { get; set; }
-    public Vector2 Position { get; set; }
+        player.Position = playerData.Position;
+        player.id = playerData.id;
+        player.is_local = playerData.is_local;
+
+        AddChild(player);
+    }
+    internal void SendPosition(Vector2 position)
+    {
+        channel.Push("move", new
+        {
+            position = new { position.x, position.y }
+        });
+    }
+
+    private void MovePlayer(Player playerData)
+    {
+        Player player = GetNode<Player>("player-" + playerData.id);
+        player.Position = playerData.Position;
+
+    }
+
+    private class InitData
+    {
+        public string YourId { get; set; }
+        public Player[] Online_players { get; set; }
+    }
 }
